@@ -4,7 +4,9 @@ node {
         checkout scm
     }
     stage('Build image') {
+	if (env.BRANCH_NAME == 'dev'){
        app = docker.build("yeezygambino1987/kiii_domashna4")
+    	}
     }
     stage('Push image') {   
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
